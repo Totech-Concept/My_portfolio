@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
+/* DEFAULT THEME: DARK MODE */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  --background: #190D22;
+  --surface: #281534;
+  --primary: #C56BFF;
+  --foreground: #FFFFFF;
+  --muted: #D8C9E2;
+  --border: #493057;
+  --button-text: #190D22;
 }
 
+/* LIGHT MODE */
+.light {
+  color-scheme: light;
+
+  --background: #EAD5FF;
+  --surface: #F3E7FF;
+  --primary: #9810FA;
+  --foreground: #190D22;
+  --muted: #493653;
+  --border: #D2B3EF;
+  --button-text: #FFFFFF;
+}
+
+/* CONNECT CSS VARIABLES TO TAILWIND */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-button-text: var(--button-text);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
