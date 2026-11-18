@@ -1,14 +1,23 @@
+'use client';
 import React from "react";
-import { myProjects } from "../data/project";
+import { myProjects } from "../data/projects";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function ProjectsSection() {
     return (
         <section id="projects" className="bg-background text-foreground py-20 transition-colors duration-300 border-t border-border/40">
             <div className="container mx-auto px-6 space-y-12">
 
-                {/* Section Header */}
-                <div className='flex flex-col items-center justify-center text-center space-y-3'>
+                {/* Section Header with Scroll Animation*/}
+                <motion.div
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className='flex flex-col items-center justify-center text-center space-y-3 '
+                >
+                    {/* <div className='flex flex-col items-center justify-center text-center space-y-3'> */}
                     <span className="inline-block rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-primary shadow-xs uppercase">
                         Portfolio
                     </span>
@@ -16,14 +25,21 @@ export default function ProjectsSection() {
                     <p className="text-muted text-base md:text-lg max-w-xl">
                         Explore real-world web applications. I've built, deployed, and tested.
                     </p>
-                </div>
+                {/* </div> */}
+                </motion.div>
+                
 
-            {/* Projects Grid */}
+            {/* Projects Grid with Staggered Scroll Animation */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {myProjects.map((project) => (
-                    <div
+                {myProjects.map((project, index) => (
+                    <motion.div
                         key={project.id}
-                        className="bg-surface border border-border rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-md"
+                        className="bg-surface border border-border rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-sm transition-colors duration-300 hover:border-primary/50 hover:shadow-lg"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+                        whileHover={{ y:-6 }}  // Smooth card lift effect on hover
                     >
                         <div className="space-y-4">
                             {/* Category Badge */}
@@ -82,7 +98,7 @@ export default function ProjectsSection() {
                         </a>
                     </div>
 
-                    </div>
+                    </motion.div>
                 ))}
                 </div>
 

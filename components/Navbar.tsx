@@ -85,7 +85,7 @@ export default function Navbar() {
 
     {/* Mobile Navigation Menu */}
     {isMobileMenuOpen && (
-        <div className='md:hidden absolute top-full left-0 w-full bg-surface border-b border-border p-6 shadow-lg animate-fadeIn'>
+        <div className='md:hidden absolute top-full left-0 w-full bg-surface border-b border-border p-6 shadow-lg transition-all duration-300 ease-in-out opacity-100 translate-y-0 visible'>
             <ul className='flex flex-col space-y-3'>
                 {navLinks.map((item) => (
                     <li key={item.id}>

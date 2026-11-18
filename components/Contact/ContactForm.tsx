@@ -2,6 +2,7 @@
 import React, { use } from 'react'
 import { useState } from 'react'
 import { FaSpinner } from "react-icons/fa";
+import { motion } from 'framer-motion'
 
 const initialFormData = {
   fullName: "",
@@ -53,7 +54,13 @@ export default function ContactForm() {
 
 
   return (
-    <div className='bg-surface border border-border w-full p-6 md:p-8 rounded-2xl shadow-sm lg:w-[60%] mx-auto'>
+    <motion.div
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+      className='bg-surface border border-border w-full p-6 md:p-8 rounded-2xl shadow-sm lg:w-[60%] mx-auto'
+    >
       <form onSubmit={handleSubmit} className='space-y-4'>
 
         {/* Full Name */}
@@ -138,6 +145,6 @@ export default function ContactForm() {
         </div>
 
       </form>
-    </div>
+    </motion.div>
   )
 };

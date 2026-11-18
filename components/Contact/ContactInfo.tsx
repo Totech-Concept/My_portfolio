@@ -1,10 +1,18 @@
+'use client'
+import { motion } from 'framer-motion'
 import React from 'react'
 import { contactMe } from '../data/contact'
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa6';
 
 export default function ContactInfo() {
   return (
-    <div className='bg-surface w-full mx-auto my-3 lg:w-[35%] border border-border rounded-2xl p-6 shadow-sm'>
+    <motion.div
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+      className='bg-surface w-full mx-auto my-3 lg:w-[35%] border border-border rounded-2xl p-6 shadow-sm'
+    >
         <h4 className='font-bold text-2xl text-foreground'>Let's Connect</h4>
         <p className='text-base font-medium text-muted mb-4 mt-2'>I'm always interested in discussing new ideas, internships, and exciting projects.</p> 
         
@@ -12,7 +20,14 @@ export default function ContactInfo() {
             {contactMe.map((contact) => {
                 const IconComponent = contact.icon;
                 return (
-                    <div key={contact.id} className='bg-background/50 border border-border p-4 rounded-xl flex items-start space-x-4 transition-all hover:border-primary/50'>
+                    <motion.div
+                        key={contact.id}
+                        initial={{ opacity: 0, x: -25 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                        className='bg-background/50 border border-border p-4 rounded-xl flex items-start space-x-4 transition-all hover:border-primary/50'
+                    >
                         {IconComponent && (
                         <div className='p-2 rounded-lg bg-surface border border-border text-primary shrink-0'>
                           <IconComponent className='w-5 h-5'/>
@@ -22,7 +37,7 @@ export default function ContactInfo() {
                             <h6 className='font-semibold text-foreground text-sm'>{contact.name}</h6>
                             <p className='text-muted text-sm mt-0.5'>{contact.description}</p>
                         </div>
-                    </div>
+                    </motion.div>
                 )
             })}
         </div>
@@ -43,6 +58,6 @@ export default function ContactInfo() {
               </a>
             </div>
             </div>
-    </div>
+    </motion.div>
   )
 }
