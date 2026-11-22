@@ -8,7 +8,7 @@ export default function ProfileImage() {
         alt="Profile Image"
         height={330}
         width={400}
-        className='md:mr-1'
+        className='w-auto h-auto max-w-full object-cover md:mr-1'
     />
   )
 }

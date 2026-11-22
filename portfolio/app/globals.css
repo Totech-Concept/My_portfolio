@@ -18,11 +18,11 @@
   color-scheme: light;
 
   --background: #EAD5FF;
-  --surface: #F3E7FF;
-  --primary: #9810FA;
-  --foreground: #190D22;
-  --muted: #493653;
-  --border: #D2B3EF;
+  --surface: #FAF5FF;
+  --primary: #8B18E8;
+  --foreground: #111111;
+  --muted: #3F3F46;
+  --border: #7E13D8;
   --button-text: #FFFFFF;
 }
 

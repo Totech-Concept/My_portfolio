@@ -22,7 +22,7 @@ export const myProjects: Project[] = [
             "Automated notifications and dashboard analytics",
             "Secure database storage and RESTful API integration" 
         ],
-        technologies: ["React", "Node.js", "Express.js", "MySQL", "Tailwind CSS"],
+        technologies: ["React", "Tailwind CSS", "Node.js", "Express.js", "MySQL"],
         liveUrl: "#",
         githubUrl: "#"
     },
@@ -37,7 +37,7 @@ export const myProjects: Project[] = [
       "Modular component design using Next.js App Router and TypeScript",
       "Interactive contact form with loading states and validation"
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Express.js", "MongoDB"],
     liveUrl: "#",
     githubUrl: "#"
   }

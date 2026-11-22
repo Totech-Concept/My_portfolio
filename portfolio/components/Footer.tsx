@@ -1,12 +1,20 @@
+'use client';
 import React from "react";
 import Link from 'next/link'
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
+import { motion } from 'framer-motion'
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-surface border-t border-border py-12 transition-colors duration-300">
+        <motion.footer 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="bg-surface border-t border-border py-12 transition-colors duration-300"
+        >
             <div className="container mx-auto px-6 space-y-8">
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -71,6 +79,6 @@ export default function Footer() {
                 <p>&copy; {currentYear} Tobiloba. All rights reserved. Built with Next.js and Tailwind CSS.</p>
             </div>
         </div>
-        </footer>
+        </motion.footer>
     );
 }

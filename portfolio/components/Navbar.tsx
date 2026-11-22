@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import { Sun, Moon, Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
     {id: 1, label: 'Home', href: '#home'},
@@ -40,7 +41,12 @@ export default function Navbar() {
         }
     };
     return (
-        <header className='sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-border transition-colors duration-300'>
+        <motion.header
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className='sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-border transition-colors duration-300'
+        >
             <div className='container mx-auto px-6 h-20 flex items-center justify-between'>
 
                 {/* Logo / Brand */}
@@ -63,44 +69,55 @@ export default function Navbar() {
 
         {/* Right Side Actions: Theme Toggle & Mobile Hamburger */}
         <div className="flex items-center space-x-4">
-            {/* Theme Toggle Button */}
-            <button
+            {/* Theme Toggle Button with animated rotation*/}
+            <motion.button
+                whileTap={{ scale: 0.9, rotate: 360 }}
+                whileHover={{ rotate: 15 }}
                 onClick={toggleTheme}
                 className="p-2 rounded-lg hover:bg-background/50 transition-colors"
                 aria-label="Toggle theme"
             >
                 {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </button>
+            </motion.button>
 
             {/* Mobile Menu Toggle Button */}
-            <button
+            <motion.button
+                whileTap={{ scale: 0.9 }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="md:hidden p-2 rounded-lg bg-background/50 border border-border text-foreground transition-opacity hover:opacity-80"
                 aria-label="Toggle Mobile Menu"
             >
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            </motion.button>
         </div>
     </div>
 
-    {/* Mobile Navigation Menu */}
-    {isMobileMenuOpen && (
-        <div className='md:hidden absolute top-full left-0 w-full bg-surface border-b border-border p-6 shadow-lg transition-all duration-300 ease-in-out opacity-100 translate-y-0 visible'>
-            <ul className='flex flex-col space-y-3'>
-                {navLinks.map((item) => (
-                    <li key={item.id}>
-                        <Link
-                            href={item.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className='block text-muted hover:text-foreground hover:bg-background/50 px-4 py-3 rounded-lg text-base font-medium transition-colors'
-                            >
-                                {item.label}
-                        </Link> 
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )}
-    </header>
+    {/* Animated Mobile Navigation Menu */}
+    <AnimatePresence>
+        {isMobileMenuOpen && (
+            <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className='md:hidden absolute top-full left-0 w-full bg-surface border-b border-border p-6 shadow-lg transition-all duration-300 ease-in-out opacity-100 translate-y-0 visible'
+            >
+                <ul className='flex flex-col space-y-3'>
+                    {navLinks.map((item) => (
+                        <li key={item.id}>
+                            <Link
+                                href={item.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className='block text-muted hover:text-foreground hover:bg-background/50 px-4 py-3 rounded-lg text-base font-medium transition-colors'
+                                >
+                                    {item.label}
+                            </Link> 
+                        </li>
+                    ))}
+                </ul>
+            </motion.div>
+        )}
+    </AnimatePresence>
+    </motion.header>
     );
 }
